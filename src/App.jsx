@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./App.css";
+
+const sanitizeName = (name) => {
+  // Remove caracteres especiais (', .) e mantém espaços
+  const sanitized = name.replace(/['.]/g, "").toLowerCase();
+
+  // Mantém espaços e aplica capitalização apenas na primeira letra
+  return sanitized.charAt(0).toUpperCase() + sanitized.slice(1);
+};
 
 function App() {
   const [champions, setChampions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredChampions, setFilteredChampions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [championsPerPage] = useState(14);
+  const [championsPerPage] = useState(6);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -74,24 +83,35 @@ function App() {
           GetBuilds.gg
         </h1>
         <p className="font-GeistSans text-2xl text-center mt-8 tracking-tighter p-8 md:p-0 md:w-1/3 mx-auto text-[#A1A1A1]">
-          Bem vindo ao GetBuilds, aqui você irá poder ver a melhor itenização
-          para cada campeão!
+          Bem vindo ao GetBuilds, aqui você poderá ver a melhor itenização para
+          cada campeão!
         </p>
-        <div>
+        <div className="w-[60%] mx-auto my-0">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Procurar campeão..."
-            className="text-[#9E9E9E] py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] bg-[#FFF3F3] w-full"
+            className="text-[#9E9E9E] py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] bg-[#FFF3F3] w-full font-GeistSans font-semibold text-sm"
           />
         </div>
-        <ul className="flex gap-8 flex-wrap items-center justify-center mt-8">
+        <ul className="flex gap-8 flex-wrap items-center justify-center mt-8 w-[60%] mx-auto">
           {currentChampions.map((champion) => {
+            const sanitizedChampionName = sanitizeName(champion.name);
+            const imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${sanitizedChampionName}_0.jpg`;
+
+            console.log("Nome original:", champion.name);
+            console.log("Nome sanitizado:", sanitizedChampionName);
+            console.log("URL da imagem:", imageUrl);
+
             return (
-              <div key={champion.id}>
-                <div className="bg-[#FFF3F3] h-52 w-30 rounded gap-2 py-4 flex flex-col items-center">
-                  <div className="w-[80%] bg-gray-500 h-24 mx-auto rounded text-center"></div>
+              <div className="flex flex-col items-center" key={champion.id}>
+                <div className="bg-[#FFF3F3] h-52 w-30 rounded gap-2 py-4 flex flex-col items-center ">
+                  <img
+                    src={imageUrl}
+                    alt={champion.name}
+                    className="w-[80%] bg-gray-500 h-36 mx-auto rounded text-center block"
+                  />
                   <h2 className="mt-6 font-GeistSans font-semibold tracking-tighter text-xl">
                     {champion.name}
                   </h2>
@@ -103,24 +123,27 @@ function App() {
             );
           })}
         </ul>
-        <div className="flex items-center justify-center mt-8">
-          <button
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="bg-[#37A470] text-white rounded py-4 px-8"
-          >
-            Anterior
-          </button>
-          <span className="px-4 py-2">
+        <div className="flex items-center justify-center mt-8 mb-8 gap-2 flex-col">
+          <div className=" flex gap-2">
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="bg-[transparent] border-2 border-[#A1A1A1]] text-[#A1A1A1] hover:bg-[#37A470] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+            >
+              Anterior
+            </button>
+
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="bg-[transparent] border-2 border-[#A1A1A1]] text-[#A1A1A1] hover:bg-[#37A470] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+            >
+              Próximo
+            </button>
+          </div>
+          <span className="px-4 py-2 text-center font-GeistSans tracking-tighter font-semibold">
             Página {currentPage} de {totalPages}
           </span>
-          <button
-            onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="bg-[#37A470] text-white rounded py-4 px-8"
-          >
-            Próximo
-          </button>
         </div>
       </section>
     </div>
