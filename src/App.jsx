@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-
-import { Typewriter } from "react-simple-typewriter";
+import { FaSearch } from "react-icons/fa";
 
 const sanitizeName = (name) => {
   // Remove caracteres especiais (', .) e mantém espaços
@@ -93,13 +92,17 @@ function App() {
           cada campeão! Consiga vencer e aproveitar melhor suas partidas
           utilizando a combinação de itens adequeadas para cada campeão.
         </p> */}
-        <div className="w-[60%] mx-auto my-0">
+        <div className="w-[60%] mx-auto my-0 relative justify-around">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Procurar campeão..."
-            className="text-[#9E9E9E] py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] border-2 border-[#0D1420] bg-[#060A11] w-full font-GeistSans font-semibold text-sm"
+            className="relative text-black font-semibold py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] border-2 border-[#0D1420] bg-[white] w-full font-GeistSans text-sm"
+          />
+          <FaSearch
+            className=" right-4 top-[52px] sm:block absolute right-8"
+            style={{ color: "#9E9E9E" }}
           />
         </div>
         <ul className="flex gap-3 md:flex-row flex-col md:flex-wrap items-center justify-center mt-8 md:w-[60%] mx-auto">
