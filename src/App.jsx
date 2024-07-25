@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
+import { Typewriter } from "react-simple-typewriter";
+
 const sanitizeName = (name) => {
   // Remove caracteres especiais (', .) e mantém espaços
   const sanitized = name.replace(/['.]/g, "").toLowerCase();
@@ -15,7 +17,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredChampions, setFilteredChampions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [championsPerPage] = useState(6);
+  const [championsPerPage] = useState(3);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -62,29 +64,34 @@ function App() {
 
   return (
     <div className="md:w-[1440px] my-0 mx-auto">
-      <header className="flex justify-between items-center py-8">
-        <h1 className="font-KTProj text-2xl font-bold tracking-tighter hover:text-[#37A470] cursor-pointer transition-all">
+      <div className="testBg w-full h-screen z-[-1] absolute bg-cover translate-x-[50%] left-[-50%] md:block hidden"></div>
+      <div className="bg-blur md:block hidden"></div>
+      {/* <div className="bg-[#29ffca] w-[600px] h-[600px]  rounded-full absolute top-[550px] left-[-550px] blur-[250px] opacity-55 "></div>{" "} */}
+      {/* <div className="bg-[#f1ff29] w-[600px] h-[600px]  rounded-full absolute top-[250px] right-[-550px] blur-[150px] opacity-55 "></div>{" "} */}
+      <header className="flex md:flex-row flex-col justify-between items-center py-8 gap-4 md:gap-0">
+        <h1 className="font-GeistSans text-2xl font-bold tracking-tighter hover:text-[#abe7ff] cursor-pointer transition-all">
           GetBuilds.gg
         </h1>
-        <div className="flex gap-4">
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#A1A1A1] border-b-2 border-[transparent] transition-all cursor-pointer">
+        <div className="flex gap-[48px]">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
             Início
           </a>
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#A1A1A1] border-b-2 border-[transparent] transition-all cursor-pointer">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
             Champions
           </a>
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#A1A1A1] border-b-2 border-[transparent] transition-all cursor-pointer">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
             Pros
           </a>
         </div>
       </header>
       <section>
-        <h1 className="text-[#37A470] font-GeistSans text-5xl md:text-8xl text-center mt-24 font-bold tracking-tighter">
+        <h1 className="text-[#ffffff] font-GeistSans text-4xl hover:tracking-wide hover:text-[#abe7ff] transition-all cursor-pointer md:text-7xl text-center tracking-tighter mt-24 font-bold">
           GetBuilds.gg
         </h1>
-        <p className="font-GeistSans text-2xl text-center mt-8 tracking-tighter p-8 md:p-0 md:w-1/3 mx-auto text-[#A1A1A1]">
+        <p className="font-GeistSans text-lg md:text-xl text-center md:mt-8 md:mb-4 p-4 md:p-0 md:w-1/2 mx-auto text-[#ffffff]">
           Bem vindo ao GetBuilds, aqui você poderá ver a melhor itenização para
-          cada campeão!
+          cada campeão! Consiga vencer e aproveitar melhor suas partidas
+          utilizando a combinação de itens adequeadas para cada campeão.
         </p>
         <div className="w-[60%] mx-auto my-0">
           <input
@@ -92,49 +99,50 @@ function App() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Procurar campeão..."
-            className="text-[#9E9E9E] py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] bg-[#FFF3F3] w-full font-GeistSans font-semibold text-sm"
+            className="text-[#9E9E9E] py-4 px-8 rounded mt-8 focus:outline-[#9E9E9E] border-2 border-[#0D1420] bg-[#060A11] w-full font-GeistSans font-semibold text-sm"
           />
         </div>
-        <ul className="flex gap-8 flex-wrap items-center justify-center mt-8 w-[60%] mx-auto">
+        <ul className="flex gap-3 md:flex-row flex-col md:flex-wrap items-center justify-center mt-8 md:w-[60%] mx-auto">
           {currentChampions.map((champion) => {
             const sanitizedChampionName = sanitizeName(champion.name);
             let imageAurelion;
             if (champion.name === "Aurelion Sol") {
-              imageAurelion = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg`;
+              imageAurelion = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/AurelionSol.png`;
             }
             let imageUrl;
             if (champion.name === "Aurelion Sol") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/AurelionSol.png`;
             } else if (champion.name === "Dr. Mundo") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/DrMundo_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/DrMundo.png`;
             } else if (champion.name === "Jarvan IV") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/JarvanIV_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/JarvanIV.png`;
             } else if (champion.name === "Kog'Maw") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/KogMaw.png`;
             } else if (champion.name === "K'Sante") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KSante_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/KSante.png`;
             } else if (champion.name === "Lee Sin") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/LeeSin_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/LeeSin.png`;
             } else if (champion.name === "Master Yi") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MasterYi_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/MasterYi.png`;
             } else if (champion.name === "Wukong") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MonkeyKing_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/MonkeyKing.png`;
             } else if (champion.name === "Miss Fortune") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/MissFortune.png`;
             } else if (champion.name === "Nunu & Willump") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nunu_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Nunu.png`;
             } else if (champion.name === "Renata Glasc") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Renata_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Renata.png`;
             } else if (champion.name === "Rek'Sai") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/RekSai_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/RekSai.png`;
             } else if (champion.name === "Tahm Kench") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/TahmKench.png`;
             } else if (champion.name === "Twisted Fate") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TwistedFate_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/TwistedFate.png`;
             } else if (champion.name === "Xin Zhao") {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/.png
+XinZhao.png`;
             } else {
-              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${sanitizedChampionName}_0.jpg`;
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/${sanitizedChampionName}.png`;
             }
 
             console.log("Nome original:", champion.name);
@@ -143,20 +151,22 @@ function App() {
             console.log("URL da imagem Aurelion:", imageAurelion);
 
             return (
-              <div className="flex flex-col items-center" key={champion.id}>
-                <div className="bg-[#FFF3F3] h-52 w-30 rounded gap-2 py-4 flex flex-col items-center ">
-                  <img
-                    src={imageUrl}
-                    alt={champion.name}
-                    className="w-[80%] bg-gray-500 h-36 mx-auto rounded text-center block"
-                  />
-                  <h2 className="mt-6 font-GeistSans font-semibold tracking-tighter text-xl">
-                    {champion.name}
-                  </h2>
+              <div className="flex items-center w-full" key={champion.id}>
+                <div className="bg-[#090E16] border-[1px] border-[#0D1420] h-20 w-[100%] rounded flex  items-center justify-around">
+                  <div className="flex items-center gap-8 py-4 w-[70%]">
+                    <img
+                      src={imageUrl}
+                      alt={champion.name}
+                      className=" bg-gray-500 h-16 border-[2px] border-[#0D1420] self-start"
+                    />
+                    <h2 className=" font-GeistSans font-semibold tracking-tighter text-xl">
+                      {champion.name}
+                    </h2>
+                  </div>
+                  <button className=" w-[20%] bg-gradient-to-r from-[#abe7ff] to-[#1d99ff] hover:to-[#1d99ff] hover:text-white duration-300 hover:from-[#1d99ff] transition-all text-black rounded self-center py-3 px-2 font-GeistSans font-semibold">
+                    Ver Build
+                  </button>
                 </div>
-                <button className="mt-2 bg-[#37A470] text-white rounded py-4 px-8 font-GeistSans font-semibold">
-                  Checar Build
-                </button>
               </div>
             );
           })}
@@ -166,7 +176,7 @@ function App() {
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="bg-[transparent] border-2 border-[#A1A1A1]] text-[#A1A1A1] hover:bg-[#37A470] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+              className="bg-[#abe7ff] border-2 border-[#abe7ff] text-[#000000] hover:bg-[#1d99ff] hover:rounded hover:border-transparent transition-all hover:text- cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
             >
               Anterior
             </button>
@@ -174,12 +184,12 @@ function App() {
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="bg-[transparent] border-2 border-[#A1A1A1]] text-[#A1A1A1] hover:bg-[#37A470] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+              className="bg-[#abe7ff] border-2 border-[#abe7ff] text-[#000000] hover:bg-[#1d99ff] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
             >
               Próximo
             </button>
           </div>
-          <span className="px-4 py-2 text-center font-GeistSans tracking-tighter font-semibold">
+          <span className="px-4 py-2 mt-4 text-center font-GeistSans tracking-tighter font-semibold">
             Página {currentPage} de {totalPages}
           </span>
         </div>

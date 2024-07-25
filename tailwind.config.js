@@ -6,7 +6,10 @@ export default {
       fontFamily: {
         GeistSans: ["Geist Sans", "sans-serif"],
         GeistMono: ["Geist Mono", "monospace"],
-        KTProj: ["KT Project", "sans-serif"],
+        Orbitron: ["Orbitron", "sans-serif"],
+        Tiny5: ["Tiny5", "sans-serif"],
+        Michroma: ["Michroma", "sans-serif"],
+        BeaufortForLol: ["Beaufort ForLol", "sans-serif"],
       },
     },
   },

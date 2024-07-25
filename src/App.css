@@ -1,6 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Orbitron:wght@400..900&family=Tiny5&display=swap');
+@font-face {
+    font-family: 'Beaufort ForLol';
+    src: url('/src/assets/fonts/BeaufortforLOL-Bold.ttf') format('truetype'),
+         url('/src/assets/fonts/BeaufortforLOL-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 body{
     overflow-x: hidden;
+    background: rgb(6,10,17);
+    background: linear-gradient(90deg, rgba(6,10,17,1) 73%, rgba(0,0,0,1) 91%);
+    color: white;
+}
+.testBg{
+    background-image: url("../src/assets/download.jpeg");
+    filter: blur(2px);
+    opacity: 15%;
+    position: relative;
+}
+.bg-blur {
+    background: linear-gradient(90deg, rgba(6,10,17,1) 73%, rgba(0,0,0,1) 91%);
+    height: 250px;
+    width: 2500px;
+    right: -40px;
+    position: absolute;
+    bottom: -90px;
+    filter: blur(60px);
+    transform: rotate(1deg); /* Ajuste o ângulo conforme necessário */
+    z-index: -1;
+  }
+.fontChoose{
+    font-family: 'Orbitron', sans-serif;    
 }
