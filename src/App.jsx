@@ -69,30 +69,30 @@ function App() {
       {/* <div className="bg-[#29ffca] w-[600px] h-[600px]  rounded-full absolute top-[550px] left-[-550px] blur-[250px] opacity-55 "></div>{" "} */}
       {/* <div className="bg-[#f1ff29] w-[600px] h-[600px]  rounded-full absolute top-[250px] right-[-550px] blur-[150px] opacity-55 "></div>{" "} */}
       <header className="flex md:flex-row flex-col justify-between items-center py-8 gap-4 md:gap-0">
-        <h1 className="font-GeistSans text-2xl font-bold tracking-tighter hover:text-[#abe7ff] cursor-pointer transition-all">
+        <h1 className="font-GeistSans text-2xl font-bold tracking-tighter hover:text-[#FF1B39] cursor-pointer transition-all">
           GetBuilds.gg
         </h1>
         <div className="flex gap-[48px]">
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#FF1B39] border-b-2 border-[transparent] transition-all cursor-pointer">
             Início
           </a>
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#FF1B39] border-b-2 border-[transparent] transition-all cursor-pointer">
             Champions
           </a>
-          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#abe7ff] border-b-2 border-[transparent] transition-all cursor-pointer">
+          <a className="font-GeistSans tracking-tighter font-semibold hover:border-[#FF1B39] border-b-2 border-[transparent] transition-all cursor-pointer">
             Pros
           </a>
         </div>
       </header>
       <section>
-        <h1 className="text-[#ffffff] font-GeistSans text-4xl hover:tracking-wide hover:text-[#abe7ff] transition-all cursor-pointer md:text-7xl text-center tracking-tighter mt-24 font-bold">
+        <h1 className="text-[#ffffff] font-GeistSans text-4xl hover:tracking-wide hover:text-[#FF1B39] transition-all cursor-pointer md:text-7xl text-center tracking-tighter mt-24 font-bold">
           GetBuilds.gg
         </h1>
-        <p className="font-GeistSans text-lg md:text-xl text-center md:mt-8 md:mb-4 p-4 md:p-0 md:w-1/2 mx-auto text-[#ffffff]">
+        {/* <p className="font-GeistSans text-lg md:text-xl text-center md:mt-8 md:mb-4 p-4 md:p-0 md:w-1/2 mx-auto text-[#ffffff]">
           Bem vindo ao GetBuilds, aqui você poderá ver a melhor itenização para
           cada campeão! Consiga vencer e aproveitar melhor suas partidas
           utilizando a combinação de itens adequeadas para cada campeão.
-        </p>
+        </p> */}
         <div className="w-[60%] mx-auto my-0">
           <input
             type="text"
@@ -152,19 +152,19 @@ XinZhao.png`;
 
             return (
               <div className="flex items-center w-full" key={champion.id}>
-                <div className="bg-[#090E16] border-[1px] border-[#0D1420] h-20 w-[100%] rounded flex  items-center justify-around">
-                  <div className="flex items-center gap-8 py-4 w-[70%]">
+                <div className="bg-[#090E16] border-[1px] border-[#0D1420] h-16 w-[100%] rounded flex  items-center justify-around">
+                  <div className="flex items-center gap-8 py-2 w-[70%]">
                     <img
                       src={imageUrl}
                       alt={champion.name}
-                      className=" bg-gray-500 h-16 border-[2px] border-[#0D1420] self-start"
+                      className=" bg-gray-500 h-12 border-[2px] border-[#0D1420] self-start"
                     />
                     <h2 className=" font-GeistSans font-semibold tracking-tighter text-xl">
                       {champion.name}
                     </h2>
                   </div>
-                  <button className=" w-[20%] bg-gradient-to-r from-[#abe7ff] to-[#1d99ff] hover:to-[#1d99ff] hover:text-white duration-300 hover:from-[#1d99ff] transition-all text-black rounded self-center py-3 px-2 font-GeistSans font-semibold">
-                    Ver Build
+                  <button className=" w-[15%] hover:bg-[#ff546b] hover:text-black duration-300 bg-[#FF1B39] transition-all text-white rounded self-center py-2 px-2 font-GeistSans font-semibold">
+                    Ver Builds
                   </button>
                 </div>
               </div>
@@ -176,7 +176,7 @@ XinZhao.png`;
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="bg-[#abe7ff] border-2 border-[#abe7ff] text-[#000000] hover:bg-[#1d99ff] hover:rounded hover:border-transparent transition-all hover:text- cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+              className="bg-[#FF1B39]  text-[#FFFFFF] hover:bg-[#ff546b] hover:rounded hover:border-transparent transition-all hover:text-black cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
             >
               Anterior
             </button>
@@ -184,7 +184,7 @@ XinZhao.png`;
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="bg-[#abe7ff] border-2 border-[#abe7ff] text-[#000000] hover:bg-[#1d99ff] hover:rounded hover:border-transparent transition-all hover:text-white cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
+              className="bg-[#FF1B39]  text-[#FFFFFF] hover:bg-[#ff546b] hover:rounded hover:border-transparent transition-all hover:text-black cursor-pointer  rounded py-4 px-8 font-GeistSans font-semibold"
             >
               Próximo
             </button>
