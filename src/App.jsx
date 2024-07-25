@@ -6,7 +6,7 @@ const sanitizeName = (name) => {
   // Remove caracteres especiais (', .) e mantém espaços
   const sanitized = name.replace(/['.]/g, "").toLowerCase();
 
-  // Mantém espaços e aplica capitalização apenas na primeira letra
+  // Mantém espaços e aplica capitalização apenas na primeira le  tra
   return sanitized.charAt(0).toUpperCase() + sanitized.slice(1);
 };
 
@@ -98,11 +98,49 @@ function App() {
         <ul className="flex gap-8 flex-wrap items-center justify-center mt-8 w-[60%] mx-auto">
           {currentChampions.map((champion) => {
             const sanitizedChampionName = sanitizeName(champion.name);
-            const imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${sanitizedChampionName}_0.jpg`;
+            let imageAurelion;
+            if (champion.name === "Aurelion Sol") {
+              imageAurelion = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg`;
+            }
+            let imageUrl;
+            if (champion.name === "Aurelion Sol") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg`;
+            } else if (champion.name === "Dr. Mundo") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/DrMundo_0.jpg`;
+            } else if (champion.name === "Jarvan IV") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/JarvanIV_0.jpg`;
+            } else if (champion.name === "Kog'Maw") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg`;
+            } else if (champion.name === "K'Sante") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KSante_0.jpg`;
+            } else if (champion.name === "Lee Sin") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/LeeSin_0.jpg`;
+            } else if (champion.name === "Master Yi") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MasterYi_0.jpg`;
+            } else if (champion.name === "Wukong") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MonkeyKing_0.jpg`;
+            } else if (champion.name === "Miss Fortune") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_0.jpg`;
+            } else if (champion.name === "Nunu & Willump") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nunu_0.jpg`;
+            } else if (champion.name === "Renata Glasc") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Renata_0.jpg`;
+            } else if (champion.name === "Rek'Sai") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/RekSai_0.jpg`;
+            } else if (champion.name === "Tahm Kench") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg`;
+            } else if (champion.name === "Twisted Fate") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TwistedFate_0.jpg`;
+            } else if (champion.name === "Xin Zhao") {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg`;
+            } else {
+              imageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${sanitizedChampionName}_0.jpg`;
+            }
 
             console.log("Nome original:", champion.name);
             console.log("Nome sanitizado:", sanitizedChampionName);
             console.log("URL da imagem:", imageUrl);
+            console.log("URL da imagem Aurelion:", imageAurelion);
 
             return (
               <div className="flex flex-col items-center" key={champion.id}>
